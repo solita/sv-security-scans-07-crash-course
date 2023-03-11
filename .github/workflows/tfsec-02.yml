@@ -19,10 +19,10 @@ jobs:
           version: latest
           soft_fail: true
           working_directory: terraform-in-action/chapter1
-          # format: sarif  # dumps SARIF to output
+          format: sarif  # dumps SARIF to output
       - name: Explore Results
         run: |
           set -ux
           pwd
           ls -al
-          cat tfsec
+          # cat tfsec
