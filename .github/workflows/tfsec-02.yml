@@ -4,8 +4,8 @@ name: tfsec-02
 on:  # [push]
   push:
     branches:
-      - main
-      # - nonexistent  # avoid triggering on main
+      # - main
+      - nonexistent  # avoid triggering on main
 jobs:
   TFSec-Terraform-Scan:
     runs-on: ubuntu-latest
