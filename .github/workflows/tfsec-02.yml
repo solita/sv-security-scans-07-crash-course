@@ -25,4 +25,4 @@ jobs:
           set -ux
           pwd
           ls -al
-          
+          cat tfsec
