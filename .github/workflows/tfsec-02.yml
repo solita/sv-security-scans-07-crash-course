@@ -13,13 +13,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: TFSec Scan
-        # uses: aquasecurity/tfsec-action@master
-        uses: aquasecurity/tfsec-action@v1.0.0
+        uses: aquasecurity/tfsec-action@master
+        # uses: aquasecurity/tfsec-action@v1.0.0
         with:
           version: latest
           soft_fail: true
           working_directory: terraform-in-action/chapter1
-          format: sarif
+          # format: sarif  # dumps SARIF to output
       - name: Explore Results
         run: |
           set -ux
