@@ -38,7 +38,7 @@ jobs:
       - name: GitLeaks Scan
         run: |
           set -ux
-          echo "Subdirectory to be scanned is: ${{ inputs.subdirectory }}
+          echo "Subdirectory to be scanned is: ${{ inputs.subdirectory }}"
           DOCKER_IMAGE="zricethezav/gitleaks:latest"
           time docker pull ${DOCKER_IMAGE}
           docker images
