@@ -20,7 +20,7 @@ jobs:
           soft_fail: true
           working_directory: terraform-in-action/chapter1
           format: sarif  # dumps SARIF to output
-          additional_args: '> foo.sarif'
+          additional_args: '--out foo.sarif'  # to print help use '> foo.sarif'
       - name: Explore Results
         run: |
           set -ux
