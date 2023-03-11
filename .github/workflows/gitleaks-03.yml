@@ -7,8 +7,8 @@ name: gitleaks-03
 on:
   push:
     branches:
-      # - main
-      - nonexistent  # avoid triggering on main
+      - main
+      # - nonexistent  # avoid triggering on main
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
@@ -36,7 +36,8 @@ jobs:
         with:
           fetch-depth: 0  # fetch all history for all branches and tags
           # fetch-depth: 1  # only the last commit
-      # Initializes the CodeQL tools for scanning, work only in Public repos, or if you have GHAS (GitHub Advanced Security)
+      # TODO: is this initialization needed?
+      # TODO: initializes the CodeQL tools for scanning, work only in Public repos, or if you have GHAS (GitHub Advanced Security)
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
       - name: GitLeaks Scan
