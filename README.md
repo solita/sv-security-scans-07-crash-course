@@ -14,6 +14,26 @@ Demo drop-in scans for Solita crash course 2023-03-15
    - you have no credentials scans.
 
 
+## Workflows in `.github/workflows/`
+
+### 1. `gitleaks-03.yml`
+
+Uses the latest official Docker image from DockerHub for the
+prominent credentials scan tool GitLeaks. Note that using 
+an official GitHub action requires a license.
+
+
+### 1.
+
+
+### 1.
+
+
+### 1.
+
+
+
+
 
 
 ### History

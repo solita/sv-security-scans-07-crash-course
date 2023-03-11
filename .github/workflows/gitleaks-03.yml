@@ -23,8 +23,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          # fetch-depth: 0  # fetch all history for all branches and tags
-          fetch-depth: 1  # only the last commit
+          fetch-depth: 0  # fetch all history for all branches and tags
+          # fetch-depth: 1  # only the last commit
       # Initializes the CodeQL tools for scanning, work only in Public repos, or if you have GHAS (GitHub Advanced Security)
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
