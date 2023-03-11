@@ -55,9 +55,9 @@ jobs:
           touch gitleaks.sarif && chmod 666 gitleaks.sarif  # TODO: needs to exist and be writable from the container!
           ls -al
           # TODO: --exit-code 0 means "not to fail immediately", continue with subsequent commands!
-          time docker run -v $(pwd):/my-repo ${DOCKER_IMAGE} detect \
-              --source="/my-repo/${scanSubdir}" --verbose --exit-code 0 \
-              --report-format sarif --report-path /my-repo/gitleaks.sarif  # NB: -v $(pwd):/my-repo!
+          time docker run -v $(pwd):/path ${DOCKER_IMAGE} detect \
+              --source="/path/${scanSubdir}/" --verbose --exit-code 0 \
+              --report-format sarif --report-path /path/gitleaks.sarif  # NB: -v $(pwd):/path!
           sleep 1
           ls -al
           sleep 1
