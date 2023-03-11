@@ -7,7 +7,7 @@ name: gitleaks-03
 on:
   push:
     branches:
-      - main
+      # - main
       # - nonexistent  # avoid triggering on main
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
         type: "string"
 env:
   scanSubdir: ""  # from your repo root
-  # scanSubdir: "terraform-in-action/"  # TODO: GitLeaks image ignores thi parameter
+  # scanSubdir: "terraform-in-action/"  # TODO: GitLeaks image ignores this parameter
   # scanSubdir: "terraform-in-action/chapter13"
 jobs:
   scan:
@@ -65,7 +65,7 @@ jobs:
           head -n 30 gitleaks.sarif
           ls -al ../
           ls -al ../../
-      # If you have no GHAS, in internal, private repos you need this:
+      # TODO: if you have no GHAS, in internal, private repos you need this:
       # https://github.com/actions/upload-artifact
       # - name: Upload results
       #   uses: actions/upload-artifact@v3

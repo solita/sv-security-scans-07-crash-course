@@ -1,0 +1,27 @@
+# 2023-03-11
+
+name: tfsec-02
+on:  # [push]
+  push:
+    branches:
+      - main
+      # - nonexistent  # avoid triggering on main
+jobs:
+  TFSec Terraform Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: TFSec Scan
+        uses: aquasecurity/tfsec-action  # @v1.0.0
+        with:
+          version: latest
+          soft_fail: true
+          working_directory: terraform-in-action/chapter1
+          format: sarif
+      - name: Explore Results
+        run: |
+          set -ux
+          pwd
+          ls -al
+          

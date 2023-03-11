@@ -20,7 +20,8 @@ Demo drop-in scans for Solita crash course 2023-03-15
 
 Uses the latest official Docker image from DockerHub for the
 prominent credentials scan tool GitLeaks. Note that using 
-an official GitHub action requires a license.
+an official GitHub action requires a license. Therefore, you are 
+interested to adopt/adapt this workflow!
 
 
 ### 1.
