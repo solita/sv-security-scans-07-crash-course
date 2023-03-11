@@ -12,10 +12,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      subdirectory:
+      subdirectory:  # Will be initialized only on manual workflow triggering
         description: "Subdirectory to scan"
         default: "./"
         type: "string"
+env:
+  scanSubdir: "terraform-in-action/"
 jobs:
   scan:
     name: GitLeaks Scan Job
@@ -38,12 +40,14 @@ jobs:
       - name: GitLeaks Scan
         run: |
           set -ux
-          echo "Subdirectory to be scanned is: ${{ inputs.subdirectory }}"
+          echo "Subdirectory to be scanned is (manual trigger): ${{ inputs.subdirectory }}"
+          echo "Subdirectory to be scanned is (on push): ${scanSubdir}"
           DOCKER_IMAGE="zricethezav/gitleaks:latest"
           time docker pull ${DOCKER_IMAGE}
           docker images
           # logFile=$(Build.BuildNumber).gitleaks.txt
           # logFile=gitleaks.txt
+          pwd
           ls -al
           docker run ${DOCKER_IMAGE} --help  # to see available options
           touch gitleaks.sarif && chmod 666 gitleaks.sarif  # TODO: needs to exist and be writable from the container!
