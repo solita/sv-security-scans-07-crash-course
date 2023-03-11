@@ -19,6 +19,7 @@ jobs:
           version: latest
           soft_fail: true
           working_directory: terraform-in-action/chapter1
+          # TODO: only if it is a public repo or you have GHAS!
           format: sarif  # dumps SARIF to output
           additional_args: '--out foo.sarif'  # to print help use '> foo.sarif'
       - name: Explore Results
@@ -28,3 +29,9 @@ jobs:
           ls -al
           # cat tfsec
           cat foo.sarif
+      # TODO: only if it is a public repo or you have GHAS!
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: foo.sarif
+          category: my-TFSec-scan
+          wait-for-processing: "true"
