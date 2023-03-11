@@ -7,7 +7,7 @@ on:  # [push]
       - main
       # - nonexistent  # avoid triggering on main
 jobs:
-  TFSec Terraform Scan:
+  TFSec-Terraform-Scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
