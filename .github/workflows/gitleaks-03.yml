@@ -1,0 +1,66 @@
+# 2023-03-11
+
+# TODO: https://hub.docker.com/r/zricethezav/gitleaks
+# TODO: You may try to use Action https://github.com/marketplace/actions/gitleaks, but it requires a license!
+
+name: gitleaks-03
+on:
+  push:
+    branches:
+      - main
+      # - nonexistent  # avoid triggering on main
+jobs:
+  scan:
+    name: GitLeaks Scan Job
+    runs-on: ubuntu-latest
+    permissions:  # write-all
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          # fetch-depth: 0  # fetch all history for all branches and tags
+          fetch-depth: 1  # only the last commit
+      # Initializes the CodeQL tools for scanning, work only in Public repos, or if you have GHAS (GitHub Advanced Security)
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+      - name: GitLeaks Scan
+        run: |
+          set -ux
+          DOCKER_IMAGE="zricethezav/gitleaks:latest"
+          time docker pull ${DOCKER_IMAGE}
+          docker images
+          # logFile=$(Build.BuildNumber).gitleaks.txt
+          # logFile=gitleaks.txt
+          ls -al
+          docker run ${DOCKER_IMAGE} --help  # to see available options
+          touch gitleaks.sarif && chmod 666 gitleaks.sarif  # TODO: needs to exist and be writable from the container!
+          ls -al
+          # TODO: --exit-code 0 means "not to fail immediately", continue with subsequent commands!
+          time docker run -v $(pwd):/my-repo ${DOCKER_IMAGE} detect \
+              --source="/my-repo" --verbose --exit-code 0 \
+              --report-format sarif --report-path /my-repo/gitleaks.sarif  # NB: -v $(pwd):/my-repo!
+          sleep 1
+          ls -al
+          sleep 1
+          # cat gitleaks.sarif
+          head -n 30 gitleaks.sarif
+          ls -al ../
+          ls -al ../../
+      # If you have no GHAS, in internal, private repos you need this:
+      # https://github.com/actions/upload-artifact
+      # - name: Upload results
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: my-artifact
+      #     path: gitleaks.txt
+      # TODO: Advanced Security must be enabled for this repository to use code scanning/uploading .sarif!
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: gitleaks.sarif
+          category: my-gitleaks-scan
+          wait-for-processing: "true"
