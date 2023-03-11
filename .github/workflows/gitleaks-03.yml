@@ -17,9 +17,9 @@ on:
         default: "./"
         type: "string"
 env:
-  # scanSubdir: ""  # from your repo root
-  # scanSubdir: "terraform-in-action/"
-  scanSubdir: "terraform-in-action/chapter13"
+  scanSubdir: ""  # from your repo root
+  # scanSubdir: "terraform-in-action/"  # TODO: GitLeaks image ignores thi parameter
+  # scanSubdir: "terraform-in-action/chapter13"
 jobs:
   scan:
     name: GitLeaks Scan Job
