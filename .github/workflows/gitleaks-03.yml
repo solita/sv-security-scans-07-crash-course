@@ -17,7 +17,9 @@ on:
         default: "./"
         type: "string"
 env:
-  scanSubdir: "terraform-in-action/"
+  # scanSubdir: ""  # from your repo root
+  # scanSubdir: "terraform-in-action/"
+  scanSubdir: "terraform-in-action/chapter13"
 jobs:
   scan:
     name: GitLeaks Scan Job
@@ -54,7 +56,7 @@ jobs:
           ls -al
           # TODO: --exit-code 0 means "not to fail immediately", continue with subsequent commands!
           time docker run -v $(pwd):/my-repo ${DOCKER_IMAGE} detect \
-              --source="/my-repo" --verbose --exit-code 0 \
+              --source="/my-repo/${scanSubdir}" --verbose --exit-code 0 \
               --report-format sarif --report-path /my-repo/gitleaks.sarif  # NB: -v $(pwd):/my-repo!
           sleep 1
           ls -al
