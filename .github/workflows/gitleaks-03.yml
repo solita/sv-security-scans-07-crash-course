@@ -9,6 +9,13 @@ on:
     branches:
       - main
       # - nonexistent  # avoid triggering on main
+# Allows you to run this workflow manually from the Actions tab
+workflow_dispatch:
+  inputs:
+    subdirectory:
+      description: "Subdirectory to scan"
+      default: "./"
+      type: "string"
 jobs:
   scan:
     name: GitLeaks Scan Job
@@ -31,6 +38,7 @@ jobs:
       - name: GitLeaks Scan
         run: |
           set -ux
+          echo "Subdirectory to be scanned is: ${{ inputs.subdirectory }}
           DOCKER_IMAGE="zricethezav/gitleaks:latest"
           time docker pull ${DOCKER_IMAGE}
           docker images
