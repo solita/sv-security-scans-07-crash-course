@@ -27,3 +27,4 @@ jobs:
           pwd
           ls -al
           # cat tfsec
+          cat foo.sarif
