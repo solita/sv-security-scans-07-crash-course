@@ -7,8 +7,8 @@ on:
       - main
       # B- nonexistent  # avoid triggering on main
 env:
-  have_GHAS: ${{ false }}
-  # have_GHAS: ${{ true }}
+  # have_GHAS: ${{ false }}
+  have_GHAS: ${{ true }}
 jobs:
   scan:
     name: scan
@@ -49,3 +49,8 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.sarif'
+
+      - name: Test
+        if: ${{ env.haveGHAS }} == ${{ true }}  # without GHAS
+        run: |
+          echo "Test!"
