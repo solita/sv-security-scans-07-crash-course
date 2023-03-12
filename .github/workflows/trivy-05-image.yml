@@ -1,0 +1,51 @@
+# 2023-03-12
+
+name: trivy-05-image
+on:
+  push:
+    branches:
+      # - main
+      - nonexistent  # avoid triggering on main
+env:
+  have_GHAS: ${{ false }}
+  # have_GHAS: ${{ true }}
+jobs:
+  scan:
+    name: scan
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: if you build your own Docker image, run these two steps:
+      # - name: Checkout code
+      #   uses: actions/checkout@v3
+      # - name: Build an image from Dockerfile
+      #   run: |
+      #     docker build -t ... .
+      # TODO: now scan the image:
+      - name: Trivy scanner in image mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'image'
+          image-ref: ubuntu:latest
+          # format: 'sarif'
+          # output: 'trivy-results.sarif'
+          # ignore-unfixed: true
+          # severity: 'CRITICAL'
+        if: ${{ '1' == '0' }}
+      # Error: Advanced Security must be enabled for this repository to use code scanning
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v2
+      #   with:
+      #     sarif_file: 'trivy-results.sarif'
+
+      - name: A
+        run: |
+          set -ux
+          echo "A"
+        if: ${{ haveGHAS }}
+
+      - name: B
+        run: |
+          set -ux
+          echo "B"
+        if: ! ${{ haveGHAS }}
+

@@ -1,4 +1,5 @@
-# sv-security-scans-07-crash-course
+# DevSecOps Crash Course
+### (This repo: sv-security-scans-07-crash-course)
 
 Demo drop-in scans for Solita crash course 2023-03-15
 
@@ -24,17 +25,24 @@ an official GitHub action requires a license. Therefore, you are
 interested to adopt/adapt this workflow!
 
 
-### 1.
+### 2. `tfsec-02.yml`
+
+...
 
 
-### 1.
+### 3. `checkov-03.yml`
+
+...
 
 
-### 1.
+### 4. `trivy-05-image`
+
+...
 
 
-
-
+### 5.
+### 6.
+### 7.
 
 
 ### History
