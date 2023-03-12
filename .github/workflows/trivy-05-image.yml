@@ -7,8 +7,8 @@ on:
       - main
       # B- nonexistent  # avoid triggering on main
 env:
-  # have_GHAS: '0'  # ${{ false }}
-  have_GHAS: '1'  # ${{ true }}
+  # have_GHAS: 'false'
+  have_GHAS: 'true'
   image: 'ubuntu:latest'
 jobs:
   scan:
@@ -46,11 +46,11 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-      - name: 0
-        if: env.haveGHAS == '0'
+      - name: false
+        if: ${{ env.haveGHAS == 'false' }}
         run: |
-          echo "0"
-      - name: 1
-        if: env.haveGHAS == '1'
+          echo 'false'
+      - name: true
+        if: ${{ env.haveGHAS == 'true' }}
         run: |
-          echo "1"
+          echo 'true'
