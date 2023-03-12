@@ -4,8 +4,8 @@ name: trivy-05-image
 on:
   push:
     branches:
-      # - main
-      - nonexistent  # avoid triggering on main
+      - main
+      # B- nonexistent  # avoid triggering on main
 env:
   have_GHAS: ${{ false }}
   # have_GHAS: ${{ true }}
