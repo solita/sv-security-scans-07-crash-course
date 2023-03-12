@@ -7,8 +7,8 @@ on:
       - main
       # B- nonexistent  # avoid triggering on main
 env:
-  have_GHAS: '0'  # ${{ false }}
-  # have_GHAS: '1'  # ${{ true }}
+  # have_GHAS: '0'  # ${{ false }}
+  have_GHAS: '1'  # ${{ true }}
   image: 'ubuntu:latest'
 jobs:
   scan:
