@@ -7,8 +7,8 @@ on:
       - main
       # B- nonexistent  # avoid triggering on main
 env:
-  have_GHAS: ${{ false }}
-  # have_GHAS: ${{ true }}
+  # have_GHAS: ${{ false }}
+  have_GHAS: ${{ true }}
 jobs:
   scan:
     name: scan
@@ -21,14 +21,14 @@ jobs:
       #   run: |
       #     docker build -t ... .
       # TODO: now scan the image, without GHAS:
-      - name: Trivy scanner in image mode
+      - name: Trivy scanner in image mode, without GHAS
         if: ${{ ! env.haveGHAS }}  # without GHAS
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
           image-ref: ubuntu:latest
       # TODO: now scan the image, with GHAS:
-      - name: Trivy scanner in image mode
+      - name: Trivy scanner in image mode, with GHAS
         if: ${{ env.haveGHAS }}  # with GHAS
         uses: aquasecurity/trivy-action@master
         with:
@@ -40,7 +40,7 @@ jobs:
           # severity: 'CRITICAL'
       # TODO: upload results to GitHub, with GHAS:
       # Error: Advanced Security must be enabled for this repository to use code scanning
-      - name: Upload Trivy scan results to GitHub Security tab
+      - name: Upload Trivy scan results to GitHub Security tab, with GHAS
         if: ${{ env.haveGHAS }}  # with GHAS
         uses: github/codeql-action/upload-sarif@v2
         with:
