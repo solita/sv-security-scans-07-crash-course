@@ -41,11 +41,11 @@ jobs:
         run: |
           set -ux
           echo "A"
-        if: ${{ haveGHAS }}
+        if: ${haveGHAS}
 
       - name: B
         run: |
           set -ux
           echo "B"
-        if: ! ${{ haveGHAS }}
+        # if: ! ${{ haveGHAS }}
 
