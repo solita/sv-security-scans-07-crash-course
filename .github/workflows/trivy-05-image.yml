@@ -7,8 +7,9 @@ on:
       - main
       # B- nonexistent  # avoid triggering on main
 env:
-  have_GHAS: ${{ false }}
-  # have_GHAS: ${{ true }}
+  # have_GHAS: ${{ false }}
+  have_GHAS: ${{ true }}
+  image: 'ubuntu:latest'
 jobs:
   scan:
     name: scan
@@ -26,7 +27,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          image-ref: ubuntu:latest
+          image-ref: ${{ env.image }}
 
       # TODO: now scan the image, with GHAS:
       - name: Trivy scanner in image mode, with GHAS
@@ -34,7 +35,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          image-ref: ubuntu:latest
+          image-ref: ${{ env.image }}
           format: 'sarif'
           output: 'trivy-results.sarif'
       # TODO: upload results to GitHub, with GHAS:
