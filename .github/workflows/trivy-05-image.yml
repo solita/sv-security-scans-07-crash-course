@@ -20,32 +20,29 @@ jobs:
       # - name: Build an image from Dockerfile
       #   run: |
       #     docker build -t ... .
-      # TODO: now scan the image:
+      # TODO: now scan the image, without GHAS:
       - name: Trivy scanner in image mode
-        if: ${{ ! env.haveGHAS }}
+        if: ${{ ! env.haveGHAS }}  # without GHAS
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
           image-ref: ubuntu:latest
-          # format: 'sarif'
-          # output: 'trivy-results.sarif'
+      # TODO: now scan the image, with GHAS:
+      - name: Trivy scanner in image mode
+        if: ${{ env.haveGHAS }}  # with GHAS
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'image'
+          image-ref: ubuntu:latest
+          format: 'sarif'
+          output: 'trivy-results.sarif'
           # ignore-unfixed: true
           # severity: 'CRITICAL'
+      # TODO: upload results to GitHub, with GHAS:
       # Error: Advanced Security must be enabled for this repository to use code scanning
-      # - name: Upload Trivy scan results to GitHub Security tab
-      #   uses: github/codeql-action/upload-sarif@v2
-      #   with:
-      #     sarif_file: 'trivy-results.sarif'
-
-      - name: A
-        run: |
-          set -ux
-          echo "A"
-        if: ${{ env.haveGHAS }}
-
-      - name: B
-        run: |
-          set -ux
-          echo "B"
-        if: ${{ ! env.haveGHAS }}
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: ${{ env.haveGHAS }}  # with GHAS
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
 
