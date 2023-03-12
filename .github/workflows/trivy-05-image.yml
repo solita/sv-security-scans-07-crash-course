@@ -47,10 +47,10 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 
       - name: false
-        if: ${{ env.haveGHAS == 'false' }}
+        if: env.haveGHAS == 'false'
         run: |
           echo 'false'
       - name: true
-        if: ${{ env.haveGHAS == 'true' }}
+        if: env.haveGHAS == 'true'
         run: |
           echo 'true'
