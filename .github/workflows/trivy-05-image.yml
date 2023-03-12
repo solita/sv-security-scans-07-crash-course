@@ -23,7 +23,7 @@ jobs:
       # TODO: now scan the image, without GHAS:
       - name: Trivy scanner in image mode, without GHAS
         # if: ${{ ! env.haveGHAS }}  # without GHAS
-        if: ${{ env.haveGHAS == "false" }}  # without GHAS
+        if: ${{ env.haveGHAS == false }}  # without GHAS
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
