@@ -6,14 +6,14 @@ on:
     branches:
       - main
       # B- nonexistent  # avoid triggering on main
-env:
-  # have_GHAS: 'false'
-  have_GHAS: 'true'
-  image: 'ubuntu:latest'
 jobs:
   scan:
     name: scan
     runs-on: ubuntu-latest
+    env:
+      # have_GHAS: 'false'
+      have_GHAS: 'true'
+      image: 'ubuntu:latest'
     steps:
       # TODO: if you build your own Docker image, run these two steps:
       # - name: Checkout code
