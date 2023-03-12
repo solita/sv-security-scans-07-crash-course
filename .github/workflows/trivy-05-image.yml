@@ -11,8 +11,8 @@ jobs:
     name: scan
     runs-on: ubuntu-latest
     env:
-      # have_GHAS: 'false'
-      have_GHAS: 'true'
+      # haveGHAS: 'false'
+      haveGHAS: 'true'
       image: 'ubuntu:latest'
     steps:
       # TODO: if you build your own Docker image, run these two steps:
