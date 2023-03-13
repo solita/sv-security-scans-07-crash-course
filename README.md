@@ -69,7 +69,13 @@ Changing package versions is done in the requirements file
 Does not work. REMOVE???
 
 
-### 8.
+### 8. `ci-`
+
+Here we illustrate another option: you do not need to keep your code 
+in teh same repository as your workflows...
+
+
+
 ### 9.
 ### 10.
 ### 11.
