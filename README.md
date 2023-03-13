@@ -45,9 +45,23 @@ interested to adopt/adapt this workflow!
 MISSING!
 
 
-### 6. `pip-audit-02.yml`
+### 6. `pip-audit-02.yml` (SCA, dependencies)
 
-...
+Scans for security vulnerabilities in Python virtual environments 
+installed using `pip install -r requiremets.txt`
+
+There are low security vulnerabilities with
+```
+aws-encryption-sdk==2.0.0
+```
+
+but they are eliminated with
+```
+aws-encryption-sdk==2.3.0
+```
+
+Changing package versions is done in the requirements file 
+`requirements-pip-audit-02.txt`.
 
 
 ### 7.

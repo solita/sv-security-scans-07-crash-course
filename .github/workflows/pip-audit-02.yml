@@ -7,8 +7,8 @@ name: pip-audit-05
 on:
   push:
     branches:
-      - main
-      # - nonexistent  # avoid triggering on main
+      # - main
+      - nonexistent  # avoid triggering on main
 jobs:
   scan:
     name: scan
