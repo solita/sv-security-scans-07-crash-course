@@ -64,7 +64,11 @@ Changing package versions is done in the requirements file
 `requirements-pip-audit-02.txt`.
 
 
-### 7.
+### 7. `eslint-02.yml`
+
+Does not work. REMOVE???
+
+
 ### 8.
 ### 9.
 ### 10.
