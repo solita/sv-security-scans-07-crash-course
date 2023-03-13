@@ -40,9 +40,22 @@ interested to adopt/adapt this workflow!
 ...
 
 
-### 5.
-### 6.
+### 5. `trivy-06-fs`
+
+MISSING!
+
+
+### 6. `pip-audit-02.yml`
+
+...
+
+
 ### 7.
+### 8.
+### 9.
+### 10.
+### 11.
+### 12.
 
 
 ### History

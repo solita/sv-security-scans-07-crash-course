@@ -4,8 +4,8 @@ name: trivy-05-image
 on:
   push:
     branches:
-      - main
-      # B- nonexistent  # avoid triggering on main
+      # - main
+      - nonexistent  # avoid triggering on main
 jobs:
   scan:
     name: scan
