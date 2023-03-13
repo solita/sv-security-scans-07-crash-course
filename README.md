@@ -66,17 +66,19 @@ Changing package versions is done in the requirements file
 
 ### 7. `eslint-02.yml`
 
-Does not work. REMOVE???
+Does not work. REMOVE??? Remove `package.json` as well!
 
 
-### 8. `ci-`
+### 8. `ci-...-aws-enc-02.yml`
 
 Here we illustrate another option: you do not need to keep your code 
-in teh same repository as your workflows...
+in the same repository as your workflows...
+
+
+### 9. `ci-...-py-alg-02.yml`
 
 
 
-### 9.
 ### 10.
 ### 11.
 ### 12.
