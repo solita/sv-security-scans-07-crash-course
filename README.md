@@ -20,6 +20,18 @@
    scan tools we discussed in the meeting. Compare how same things 
    are expressed in GitHub Actions and Azure DevOps pipelines.
 
+6. Sorry, it may look chaotic, but you'll find a few useful
+   security workflows in (bigger numbers correspond to later
+   versions):
+
+   - https://github.com/solita/sv-security-scans-07-crash-course
+   - https://github.com/solita/sv-security-scans-06
+   - https://github.com/solita/sv-security-scans-05a
+   - https://github.com/solita/sv-security-scans-04
+   - https://github.com/solita/sv-security-scans-03
+   - https://github.com/solita/sv-security-scans-02
+   - https://github.com/solita/sv-security-scans-01 (sorry, it's Internal)
+
 
 ## Workflows in `.github/workflows/`
 
