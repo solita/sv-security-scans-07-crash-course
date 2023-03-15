@@ -39,7 +39,7 @@ IaC security scanner (Terraform, CloudFormation, k8s)
 
 ### 4. `trivy-05-image`
 
-...
+Prominent Docker container scanner
 
 
 ### 5. `trivy-06-fs`
@@ -74,11 +74,13 @@ Does not work. REMOVE??? Remove `package.json` as well!
 ### 8. `ci-...-aws-enc-02.yml`
 
 Here we illustrate another option: you do not need to keep your code 
-in the same repository as your workflows...
+in the same repository as your workflows... 
+Tested on AWS Encryption library
 
 
 ### 9. `ci-...-py-alg-02.yml`
 
+Same, tested on Python Algorithms library.
 
 
 ### 10.
