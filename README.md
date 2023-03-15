@@ -29,7 +29,7 @@
    - https://github.com/solita/sv-security-scans-05a
    - https://github.com/solita/sv-security-scans-04
    - https://github.com/solita/sv-security-scans-03
-   - https://github.com/solita/sv-security-scans-02
+   - https://github.com/solita/sv-security-scans-02 (has a few of my recent security blogs)
    - https://github.com/solita/sv-security-scans-01 (sorry, it's Internal)
 
 
