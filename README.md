@@ -22,12 +22,12 @@ Demo drop-in scans for Solita crash course 2023-03-15
 Uses the latest official Docker image from DockerHub for the
 prominent credentials scan tool GitLeaks. Note that using 
 an official GitHub action requires a license. Therefore, you are 
-interested to adopt/adapt this workflow!
+interested to adopt/adapt this workflow to be able to use Gitleaks!
 
 
 ### 2. `tfsec-02.yml`
 
-...
+Terraform IaC security scanner.
 
 
 ### 3. `checkov-03.yml`
