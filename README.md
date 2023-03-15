@@ -29,13 +29,12 @@ interested to adopt/adapt this workflow to be able to use Gitleaks!
 
 ### 2. `tfsec-02.yml`
 
-Terraform IaC 
-security scanner.
+Terraform IaC security scanner.
 
 
 ### 3. `checkov-03.yml`
 
-...
+IaC security scanner (Terraform, CloudFormation, k8s)
 
 
 ### 4. `trivy-05-image`

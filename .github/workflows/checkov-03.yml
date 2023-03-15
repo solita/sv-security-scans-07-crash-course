@@ -13,10 +13,10 @@ jobs:
   Checkov-Terraform-Scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkou Code
+      - name: Checkov Code
         uses: actions/checkout@v3
       - name: Scan with Checkov
-        id: checkov  # TODO: what for?
+        id: checkov  # TODO: what for? For reference, from other jobs or steps
         uses: bridgecrewio/checkov-action@master
         with:
           directory: terraform-in-action/chapter1
