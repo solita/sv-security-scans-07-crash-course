@@ -1,7 +1,6 @@
-# DevSecOps Crash Course
-### (This repo: sv-security-scans-07-crash-course)
+# Solita DevSecOps Crash Course, 2023-03-15
+### (This repo name: `solita/sv-security-scans-07-crash-course`)
 
-Demo drop-in scans for Solita crash course 2023-03-15
 
 ## Remarks
 
@@ -13,6 +12,9 @@ Demo drop-in scans for Solita crash course 2023-03-15
    - internal and private repos have no possibility to use CodeQL SAST;
    - you cannot upload .sarif files with security scan results to GitHub;
    - you have no credentials scans.
+3. There is also a `.pptx` file with the presentation slides.
+4. There are also a few recent DevSecOps reports about 
+   current statistics about security vulnerabilities.
 
 
 ## Workflows in `.github/workflows/`
@@ -27,7 +29,8 @@ interested to adopt/adapt this workflow to be able to use Gitleaks!
 
 ### 2. `tfsec-02.yml`
 
-Terraform IaC security scanner.
+Terraform IaC 
+security scanner.
 
 
 ### 3. `checkov-03.yml`
