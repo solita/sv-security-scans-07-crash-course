@@ -1,0 +1,38 @@
+# 2023-03-14
+
+name: p04-checkov-03-$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: ubuntu-latest  # same as ubuntu-20.04
+
+resources:
+  repositories:
+    # - repository: templatesFortify
+    #   type: git
+    #   name: 'Common Cloud Services/fortify-03-template'
+    #   ref: 'refs/heads/master'
+    # TODO: we scan NOT current repo, but fetch code from ANOTHER repo!
+    - repository: toBeScannedRepo  # TODO: will be scanned
+      type: git
+      name: 'SV_Security project/code-samples-01'
+      trigger:
+        branches:
+          include:
+            - main
+
+# remove it - and it will be triggered by the main branch
+trigger: none  # will not be triggered by its own changes!
+
+steps:
+  - checkout: toBeScannedRepo
+    path: s/scanned  # TODO: notice s/
+
+  - bash: |
+      set -ux
+      pwd
+      ls -al
+      CHECKOV_IMAGE=bridgecrew/checkov:latest
+      SUBDIRECTORY="terraform-in-action"
+      docker pull ${CHECKOV_IMAGE}
+      docker run --tty --volume $(pwd)/${SUBDIRECTORY}:/tf ${CHECKOV_IMAGE} --directory /tf --soft-fail  # do not fail if errors found
+    displayName: 'Checkov scan'

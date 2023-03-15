@@ -1,0 +1,66 @@
+# 2023-03-14
+
+name: p05-trivy-05-image-$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: ubuntu-latest  # same as ubuntu-20.04
+
+# resources:
+#  repositories:
+#    # - repository: templatesFortify
+#    #   type: git
+#    #   name: 'Common Cloud Services/fortify-03-template'
+#    #   ref: 'refs/heads/master'
+#    # TODO: we scan NOT current repo, but fetch code from ANOTHER repo!
+#    - repository: toBeScannedRepo  # TODO: will be scanned
+#      type: git
+#      name: 'SV_Security project/code-samples-01'
+#      trigger:
+#        branches:
+#          include:
+#            - main
+
+# remove it - and it will be triggered by the main branch
+trigger: none  # will not be triggered by its own changes!
+
+steps:
+#   - checkout: toBeScannedRepo
+#     path: s/scanned  # TODO: notice s/
+
+  - bash: |
+      pwd
+      ls -al
+      IMAGE=ubuntu:latest
+      # python:3.4-alpine
+      docker pull aquasec/trivy:latest
+      docker run --rm aquasec/trivy:latest image ${IMAGE}
+      # docker run --rm -v $(pwd)/SUBDIRECTORY:/myapp aquasec/trivy <OPTIONS> filesystem /myapp
+    displayName: 'Trivy image scan Ubuntu'
+
+  - bash: |
+      pwd
+      ls -al
+      IMAGE=python:3.4-alpine  # Total: 37 (UNKNOWN: 0, LOW: 4, MEDIUM: 16, HIGH: 13, CRITICAL: 4)
+      docker run --rm aquasec/trivy:latest image ${IMAGE}
+    displayName: 'Trivy image scan Python-3.4-alpine'
+
+  - bash: |
+      pwd
+      ls -al
+      IMAGE=python:3.9-alpine  # Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 1, CRITICAL: 0)
+      docker run --rm aquasec/trivy:latest image ${IMAGE}
+    displayName: 'Trivy image scan Python-3.9-alpine'
+
+  - bash: |
+      pwd
+      ls -al
+      IMAGE=python:3.10-alpine  # Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+      docker run --rm aquasec/trivy:latest image ${IMAGE}
+    displayName: 'Trivy image scan Python-3.10-alpine'
+
+  - bash: |
+      pwd
+      ls -al
+      IMAGE=python:3.11-alpine  # Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+      docker run --rm aquasec/trivy:latest image ${IMAGE}
+    displayName: 'Trivy image scan Python-3.11-alpine'

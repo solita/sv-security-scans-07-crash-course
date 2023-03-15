@@ -1,0 +1,56 @@
+# 2023-02-24, 03-14
+
+name: p01-semgrep-$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: ubuntu-latest  # same as ubuntu-20.04
+
+resources:
+  repositories:
+    # - repository: templatesFortify
+    #   type: git
+    #   name: 'Common Cloud Services/fortify-03-template'
+    #   ref: 'refs/heads/master'
+    # TODO: we scan NOT current repo, but fetch code from ANOTHER repo!
+    - repository: toBeScannedRepo  # TODO: will be scanned
+      type: git
+      name: 'SV_Security project/code-samples-01'
+      trigger:
+        branches:
+          include:
+            - main
+
+# remove it - and it will be triggered by the main branch
+trigger: none  # will not be triggered by its own changes!
+
+steps:
+  - checkout: self
+    path: s/bar
+  - checkout: toBeScannedRepo
+    path: s/foo
+  - bash: |
+      set -ux
+      echo "Hello!"
+      pwd
+      ls -al
+      ls -al ../
+      ls -al bar/
+      ls -al foo/
+    displayName: Test 1
+
+  - bash: |
+      set -ux
+      pwd
+      ls -al
+      docker run --rm -v "${PWD}:/src" returntocorp/semgrep semgrep --config=auto --sarif -o semgrep1.sarif --verbose
+    displayName: Semgrep scan 1
+    workingDirectory: foo/Samples/basic  # TODO: no s/ prefix!
+    condition: eq(0, 0)
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: foo/Samples/basic/semgrep1.sarif
+      artifactName: Semgrep
+      publishLocation: Container
+      parallel: true
+      fileCopyOptions: '**/*'

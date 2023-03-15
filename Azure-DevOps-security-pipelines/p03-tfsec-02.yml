@@ -1,0 +1,38 @@
+# 2023-03-14
+
+name: p03-tfsec-02-$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: ubuntu-latest  # same as ubuntu-20.04
+
+resources:
+  repositories:
+    # - repository: templatesFortify
+    #   type: git
+    #   name: 'Common Cloud Services/fortify-03-template'
+    #   ref: 'refs/heads/master'
+    # TODO: we scan NOT current repo, but fetch code from ANOTHER repo!
+    - repository: toBeScannedRepo  # TODO: will be scanned
+      type: git
+      name: 'SV_Security project/code-samples-01'
+      trigger:
+        branches:
+          include:
+            - main
+
+# remove it - and it will be triggered by the main branch
+trigger: none  # will not be triggered by its own changes!
+
+steps:
+  - checkout: toBeScannedRepo
+    path: s/scanned  # TODO: notice s/
+
+  - bash: |
+      pwd
+      ls -al
+      time docker pull aquasec/tfsec:latest
+      # docker run --rm -t -v "$(pwd):/src" tfsec/tfsec -e ${{ variables.tfsec_checks }} /src --format JUnit > "$(pwd)/TFSecReport/result.xml"
+      # docker run --rm -t -v "$(pwd):/src" tfsec/tfsec:latest /src --format JUnit > "$(pwd)/TFSecReport/result.xml"
+      # TODO: scan terraform-in-action subdirectory only!
+      time docker run --rm -t -v "$(pwd)/terraform-in-action:/src" aquasec/tfsec:latest /src --soft-fail --ignore-hcl-errors  # TODO: add these keys!
+    displayName: 'TFSec scan'

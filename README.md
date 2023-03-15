@@ -15,6 +15,10 @@
 3. There is also a `.pptx` file with the presentation slides.
 4. There are also a few recent DevSecOps reports about 
    current statistics about security vulnerabilities.
+5. Finally, there is a subdirectory `Azure-DevOps-security-pipelines/`
+   containing Azure DevOps pipelines with the magnificent security
+   scan tools we discussed in the meeting. Compare how same things 
+   are expressed in GitHub Actions and Azure DevOps pipelines.
 
 
 ## Workflows in `.github/workflows/`
